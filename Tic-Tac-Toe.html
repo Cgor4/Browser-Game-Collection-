@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<html>
+<title>Tic-Tac-Toe</title>
+
+<style>
+ #myCanvas { 
+ 	  background: #ffd633; 
+      margin: 0 auto; 
+ 	  display: block;
+ 	}
+</style>
+
+<canvas id='myCanvas' width='600' height='600'></canvas>
+
+<script type='text/javascript'>
+	
+ var canvas = document.getElementById("myCanvas");
+ var ctx = canvas.getContext("2d");
+  
+  var turn = 1;
+  var a = 0;
+  var b = 0;
+  var c = 0;
+  var d = 0; 
+  var mid = 0;
+  var f = 0;
+  var g = 0;
+  var h = 0;
+  var i = 0;
+
+  draw();
+
+  document.addEventListener('keydown', play);
+
+
+function draw() {
+//First horizontal line
+ctx.strokeWeight="20px";
+ctx.moveTo(0, 200); 
+ctx.lineTo(600, 200);
+ctx.stroke();
+
+//Second horizontal line
+ctx.strokeWeight="20px";
+ctx.moveTo(0, 400); 
+ctx.lineTo(600, 400);
+ctx.stroke();
+
+// First vertical line
+ctx.strokeWeight="20px";
+ctx.moveTo(200, 0);
+ctx.lineTo(200, 600);
+ctx.stroke();
+
+//Second vertical line
+ctx.strokeWeight="20px";
+ctx.moveTo(400, 0); 
+ctx.lineTo(400, 600);
+ctx.stroke();
+
+}
+
+
+function play(e) {
+
+   //Square 1
+  if (e.key == '1' && a == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 70, 130);
+  	a +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '1' && a == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 60, 130);
+  	a +=2;
+    turn -= 1; 
+  }
+
+  //Square 2
+  if (e.key == '2' && b == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 270, 130);
+  	b +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '2' && b == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 260, 130);
+  	b +=2;
+  	turn -= 1;
+  }
+
+
+  //Square 3
+  if (e.key == '3' && c == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 470, 130);
+  	c +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '3' && c == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 460, 130);
+  	c +=2;
+  	turn -= 1;
+  }
+
+   //Square 4
+  if (e.key == '4' && d == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 70, 330);
+  	d +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '4' && d == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 60, 330);
+  	d +=2;
+  	turn -= 1;
+  }
+
+ //Square 5
+  if (e.key == '5' && mid == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 270, 330);
+  	mid +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '5' && mid == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 260, 330);
+  	mid +=2;
+    turn -= 1; 
+  }
+
+
+ //Square 6
+  if (e.key == '6' && f == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 470, 330);
+  	f +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '6' && f == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 460, 330);
+  	f +=2;
+  	turn -= 1;
+  }
+
+
+  //Square 7
+  if (e.key == '7' && g == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 70, 530);
+  	g +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '7' && g == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 60, 530);
+  	g +=2;
+  	turn -= 1;
+  }
+
+  //Square 8
+  if (e.key == '8' && h == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 270, 530);
+  	h +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '8' && h == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 260, 530);
+  	h +=2;
+  	turn -= 1;
+  }
+
+
+ //Square 9
+  if (e.key == '9' && i == 0 && turn == 1) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('X', 470, 530);
+  	i +=1;
+  	turn += 1;
+  }
+
+   if (e.key == '9' && i == 0 && turn == 2) {
+  	ctx.font = '100px Arial'; 
+  	ctx.fillStyle = '#000000';
+  	ctx.fillText('O', 460, 530);
+  	i +=2;
+  	turn -= 1;
+  }
+
+  //x wins
+
+  //columns 
+
+  // first column win
+  if (a == 1 && d == 1 && g == 1) {
+  	alert('X wins!');
+  }
+
+  // second column win
+  if (b == 1 && mid == 1 && h == 1) {
+  	alert('X wins!');
+  }
+
+    // third column win
+  if (c == 1 && f == 1 && i == 1) {
+  	alert('X wins!');
+  }
+
+
+  //rows
+
+    // first row win
+  if (a == 1 && b == 1 && c == 1) {
+  	alert('X wins!');
+  }
+
+ // second row win
+  if (d == 1 && mid == 1 && f == 1) {
+  	alert('X wins!');
+  }
+
+ // third row win
+ if (g == 1 && h == 1 && i == 1) {
+ 	alert('X wins!');
+  }
+
+  //diagonals
+  if (a == 1 && mid == 1 && i == 1) {
+  	alert('X wins!');
+  }
+
+  if (c == 1 && mid == 1 && g == 1) {
+  	alert('X wins!');
+  }
+
+
+//O wins
+
+  //columns 
+
+  // first column win
+  if (a == 2 && d == 2 && g == 2) {
+  	alert('O wins!');
+  }
+
+  // second column win
+  if (b == 2 && mid == 2 && h == 2) {
+  	alert('O wins!');
+  }
+
+    // third column win
+  if (c == 2 && f == 2 && i == 2) {
+  	alert('O wins!');
+  }
+
+
+  //rows
+
+    // first row win
+  if (a == 2 && b == 2 && c == 2) {
+  	alert('O wins!');
+  }
+
+ // second row win
+  if (d == 2 && mid == 2 && f == 2) {
+  	alert('O wins!');
+  }
+
+ // third row win
+ if (g == 2 && h == 2 && i == 2) {
+ 	alert('O wins!');
+  }
+
+  //diagonals
+  if (a == 2 && mid == 2 && i == 2) {
+  	alert('O wins!');
+  }
+
+  if (c == 2 && mid == 2 && g == 2) {
+  	alert('O wins!');
+  }
+
+
+
+}
+
+</script>
+</html>

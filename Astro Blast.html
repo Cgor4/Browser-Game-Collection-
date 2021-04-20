@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Astro Blast</title>
+
+	<style type="text/css">
+		
+     #canvas {
+     	display: block;
+     	background: black;
+     	margin: 0 auto;
+     }
+
+	</style>
+
+</head>
+
+<body>
+  
+ <canvas id="canvas" width="800" height="500"></canvas>
+
+  <script type="text/javascript">
+
+    //canvas setup
+    var cvs = document.getElementById('canvas'); 
+    var ctx = cvs.getContext('2d');
+
+  	//player position
+  	var x = canvas.width/2; 
+    var y = canvas.height - 30;
+
+    //missile shoot true/false
+    var fire = 0;
+
+    //Game mechanics
+    var lives = 3; 
+    var score = 0;
+    var enemyX = 600;
+    var enemyY = 100;
+    var direction = 1;
+    var speed = 2;
+    var b = 500;
+    var target = 30;
+    var v1 = enemyY+60;
+    var v2 = enemyY;
+
+    //collision detection variables
+
+    //Line 1
+    var a = 0; 
+    var c = 0;
+    var d = 0;
+    var nut = 0;
+    var f = 0;
+    var g = 0;
+    var h = 0;
+    var i = 0;
+    var j = 0;
+    var k = 0; 
+
+    //Line 2
+    var l = 0;
+    var m = 0;
+    var n = 0; 
+    var o = 0; 
+    var p = 0; 
+    var q = 0;
+
+    document.addEventListener('keydown', move);
+    document.addEventListener('mousemove', mouse, false);
+    document.addEventListener('click', click, false);
+
+    // Arrow Key Movement
+    function move(e) {
+      
+      if (e.key == 'Right' || e.key == "ArrowRight") {
+          x += 20;
+      }
+      else if (e.key == 'Left' || e.key == 'ArrowLeft') {
+          x -= 20;
+      }
+      else if (e.key == '  ') {
+        fire += 1;
+      }
+
+    }  
+
+    function mouse(e) {
+      var relativeX = e.clientX - canvas.offsetLeft;
+      x = relativeX;
+    }
+
+    function click(e) {
+
+        fire += 1; 
+    }
+
+
+
+    function draw(e) {
+      
+      //If missile reaches the end of screen, come back
+
+    if (fire == 1) {
+      y -= 120 / 30;
+     }
+
+     if (y < 0) {
+        fire -= 1; 
+        y = canvas.height - 30;
+     }
+
+     if (fire == 2 && y > 0) {
+        fire -= 1;
+        y = canvas.height - 30;
+     }
+
+
+
+
+       //Enemy Movement
+
+       enemyX += direction;
+
+       //Wave 2
+
+       if (enemyX == 770) {
+         direction = -direction; 
+         enemyY += 5;
+       }
+
+       if (enemyX-65*9 == 0) {
+         direction = -direction; 
+         enemyY += 5;
+       }
+
+      // Wave 1
+       b += speed;
+
+       if (b == 770) {
+         speed = -speed; 
+         enemyY += 2.5;
+       }
+
+       if (b-80*5 == 0) {
+         speed = -speed; 
+         enemyY += 2.5;
+       }
+
+
+
+
+      //collision detection
+      
+      //Wave 1
+
+      //a
+      if (x+17 >= enemyX && x+17 <= enemyX+target && y <= enemyY && y >= enemyY-20) {
+        a += 1;
+        score += 100;
+        y = canvas.height - 30;
+        fire -= 1; 
+      
+      }
+        //c
+       if (x+17 >= enemyX-65 && x+17 <= enemyX-65+target && y <= enemyY && y >= enemyY-20) {
+        c += 1;
+        score += 100;
+         y = canvas.height - 30;
+        fire -= 1; 
+       
+      }
+         //d
+       if (x+17 >= enemyX-65*2 && x+17 <= enemyX-65*2+target && y <= enemyY && y >= enemyY-20) {
+        d += 1;
+        score += 100;
+        y = canvas.height - 30;
+        fire -= 1; 
+      
+      }
+       //e
+      if (x+17 >= enemyX-65*3 && x+17 <= enemyX-65*3+target && y <= enemyY && y >= enemyY-20) {
+        nut += 1;
+        score += 100;
+        y = canvas.height - 30;
+        fire -= 1; 
+        
+      }
+
+     //f
+      if (x+17 >= enemyX-65*4 && x+17 <= enemyX-65*4+target && y <= enemyY && y >= enemyY-20) {
+        f += 1;
+        score += 100;
+        y = canvas.height - 30;
+        fire -= 1; 
+       
+      }
+
+       //g
+      if (x+17 >= enemyX-65*5 && x+17 <= enemyX-65*5+target && y <= enemyY && y >= enemyY-20) {
+        g += 1;
+        score += 100;
+        y = canvas.height - 30;
+        fire -= 1; 
+         
+      }
+
+       //h
+      if (x+17 >= enemyX-65*6 && x+17 <= enemyX-65*6+target && y <= enemyY && y >= enemyY-20) {
+        h += 1;
+        score += 100;
+        y = canvas.height - 30;
+        fire -= 1; 
+       
+      }
+
+       //i
+      if (x+17 >= enemyX-65*7 && x+17 <= enemyX-65*7+target && y <= enemyY && y >= enemyY-20) {
+        i += 1;
+        score += 100;
+         y = canvas.height - 30;
+        fire -= 1; 
+         
+      }
+
+       //j
+      if (x+17 >= enemyX-65*8 && x+17 <= enemyX-65*8+target && y <= enemyY && y >= enemyY-20) {
+        j += 1;
+        score += 100;
+        y = canvas.height - 30;
+        fire -= 1; 
+      }
+
+      
+
+       //k
+      if (x+17 >= enemyX-65*9 && x+17 <= enemyX-65*9+target && y <= enemyY && y >= enemyY-20) {
+        k += 1;
+        score += 100;
+         y = canvas.height - 30;
+        fire -= 1;
+      }
+
+      //Wave 2
+
+      //l 
+      if (x+17 >= b && x+17 <= b+27 && y <= enemyY+60 && y >= enemyY - 45) {
+        l += 1;
+        score += 50;
+         y = canvas.height - 30;
+        fire -= 1;
+      }
+
+       //m
+      if (x+17 >= b-80 && x+17 <= b-80+27 && y <= enemyY+60 && y >= enemyY - 45) {
+        m += 1;
+        score += 50;
+         y = canvas.height - 30;
+        fire -= 1;
+      }
+
+        //n
+      if (x+17 >= b-80*2 && x+17 <= b-80*2+27 && y <= enemyY+60 && y >= enemyY - 45) {
+        n += 1;
+        score += 50;
+         y = canvas.height - 30;
+        fire -= 1;
+      }
+
+       //o
+      if (x+17 >= b-80*3 && x+17 <= b-80*3+27 && y <= enemyY+60 && y >= enemyY - 45) {
+        o += 1;
+        score += 50;
+         y = canvas.height - 30;
+        fire -= 1;
+      }
+
+       //p
+      if (x+17 >= b-80*4 && x+17 <= b-80*4+27 && y <= enemyY+60 && y >= enemyY - 45) {
+        p += 1;
+        score += 50;
+         y = canvas.height - 30;
+        fire -= 1;
+      }
+
+       //q
+      if (x+17 >= b-80*5 && x+17 <= b-80*5+27 && y <= enemyY+60 && y >= enemyY - 45) {
+        q += 1;
+        score += 50;
+         y = canvas.height - 30;
+        fire -= 1;
+      }
+
+
+
+
+     //Animation
+
+
+    //Player
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  	ctx.fillStyle='yellow';
+  	ctx.fillRect(x, 470, 40, 10);
+    ctx.fillRect(x+15, 460, 10, 10);
+    ctx.fillRect(x+17, y, 5, 10);
+    ctx.fillStyle='white'; 
+    ctx.font = '16px Arial';
+    ctx.fillText('Score: '+score, 50, 20);
+    ctx.fillText('Lives: '+lives, 700, 20); 
+
+    //First Wave of enemies
+    if (a == 0) {
+    ctx.fillStyle ='green';
+    ctx.fillRect(enemyX, enemyY, 30, 20);
+    }
+    if (c == 0) {
+    ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65, enemyY, 30, 20);
+  }
+    if (d == 0) {
+     ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65*2, enemyY, 30, 20);
+  }
+
+    if (nut == 0) {
+    ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65*3, enemyY, 30, 20);
+    }
+
+    if (f == 0) {
+       ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65*4, enemyY, 30, 20);
+  }
+   if (g == 0) {
+     ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65*5, enemyY, 30, 20);
+  }
+  if (h == 0) {
+     ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65*6, enemyY, 30, 20);
+  }
+  if (i == 0) {
+     ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65*7, enemyY, 30, 20);
+  }
+  if (j == 0) {
+     ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65*8, enemyY, 30, 20);
+  }
+  if (k == 0) {
+     ctx.fillStyle ='green';
+    ctx.fillRect(enemyX-65*9, enemyY, 30, 20);
+  }
+
+
+    //Second wave of enemies
+
+    if (l == 0) {
+    ctx.fillStyle ='green'; 
+    ctx.fillRect(b, enemyY+60, 27, 15);
+    }
+    
+    if (m == 0) {
+    ctx.fillStyle ='green'; 
+    ctx.fillRect(b-80, enemyY+60, 27, 15);
+    }
+
+    if (n == 0) {
+    ctx.fillStyle ='green'; 
+    ctx.fillRect(b-80*2, enemyY+60, 27, 15);
+    }
+
+    if (o == 0) {
+    ctx.fillStyle ='green'; 
+    ctx.fillRect(b-80*3, enemyY+60, 27, 15);
+    }
+
+    if (p == 0) {
+    ctx.fillStyle ='green'; 
+    ctx.fillRect(b-80*4, enemyY+60, 27, 15);
+  }
+
+    if (q == 0) {
+    ctx.fillStyle ='green'; 
+     ctx.fillRect(b-80*5, enemyY+60, 27, 15);
+}
+
+ 
+ //Taking out wave sensors
+
+ //Wave 2
+
+ if (a+c+d+e+f+g+h+i+j+k == 10) {
+    direction = 0;
+    enemyX = -30; 
+    target = 0;
+ }
+
+       //Wave 1
+ if (l+m+n+o+p+q == 6) {
+    speed = 0;
+    b = -30; 
+    
+ }
+
+ //Winning the Game
+if(score >= 1300) {
+  alert('YOU WIN!');
+  document.location.reload();
+}
+
+    requestAnimationFrame(draw); 
+
+    }
+
+    draw();
+ 
+
+  </script>
+
+</body>
+
+</html>

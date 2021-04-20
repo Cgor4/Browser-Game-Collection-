@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Catch Game</title>
+	<style type="text/css">
+	 #canvas {
+	 	margin: 0 auto;
+	 	background: #B0E0E6;
+	 	display: block;
+	 }
+	</style>
+</head>
+<body>
+ <canvas id='canvas' width='800' height="500"></canvas>
+ <script type="text/javascript">
+
+ 	//variables
+ 	var cvs = document.getElementById('canvas');
+ 	var ctx = canvas.getContext('2d');
+    var basket = 400;
+    var width = 100;
+    var score = 0;
+    var lives = 3;
+    var y = 20;
+    var speed = Math.floor(Math.random()*10);
+    var x = Math.floor(Math.random()* 751);
+
+    document.addEventListener("keydown", moveUp);
+    document.addEventListener("mousemove", mouseMoveHandler, false);
+
+    function moveUp(e) {
+ 
+   if(e.key == "Right" || e.key == "ArrowRight") {
+   basket += 40;
+   }
+   else if(e.key == "Left" || e.key == "ArrowLeft") {
+   basket -= 40;
+   }
+}  
+ 
+ function mouseMoveHandler(e) {
+  var relativeX = e.clientX - canvas.offsetLeft;
+   
+   basket = relativeX;
+  }
+
+   
+     function draw(e) {
+
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+     ctx.fillStyle='#cf9500';
+     ctx.fillRect(basket, 410, 100, 40);
+     ctx.fillStyle='#80da80';
+     ctx.fillRect(0, 450, 800, 50);
+     ctx.fillStyle='#DE0B0F';
+     ctx.fillRect(x, y, 20, 20);
+     ctx.font='16px Arial';
+     ctx.fillStyle='#000000';
+     ctx.fillText("Score: "+score, 8, 20);
+     ctx.font='16px Arial';
+     ctx.fillStyle='#000000';
+     ctx.fillText("Lives: "+lives, 732, 20);
+
+     //makes the ball move and change x position
+     y += speed;
+   
+     if (y == 500) {
+     	y -= 480;
+     	x += Math.floor(Math.random()* -300 + 301);
+     	lives -= 1;
+     }
+
+     if(x > 800) {
+     	x -= 500;
+     }
+
+      if(x < 0) {
+     	x += 500;
+     }
+
+     //collision detection & scoring
+     if (x >= basket && x <= basket+width && y >= 410) {
+     	score += 100;
+     	y -= 390;
+     	x += Math.floor(Math.random()* -300 + 301);
+     }
+
+     //Ending the game 
+     if (lives == 0) {
+     	alert('GAME OVER!');
+     	document.location.reload();
+     }
+
+     requestAnimationFrame(draw);
+
+    }
+
+    draw();
+
+ </script>
+</body>
+</html>

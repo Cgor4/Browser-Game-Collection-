@@ -1,0 +1,139 @@
+<!DOCTYPE HTML> 
+<html>
+
+<canvas id="canvas" width="1080" height="540"></canvas>
+
+<style>
+ #canvas{
+  background: #eee; 
+  display: block;
+  margin: 0 auto;	
+ }
+</style>
+
+
+<script type="text/javascript">
+
+  //x position and rate of position change, context variable
+  var cvs = document.getElementById('canvas')
+  var ctx = cvs.getContext('2d')
+  var y = canvas.height/2;
+  var z = canvas.height/2;
+  var bx = canvas.width/2;
+  var by = canvas.height/2;
+  var xv = Math.floor(Math.random()* 76+ 50)/30; 
+  var yv = Math.floor(Math.random()*76+50)/30;
+  var size = 20;
+  var s1 = 0;
+  var s2 = 0; 
+  var paddle = 100;
+  var button = document.getElementById('button');
+
+  
+
+//on key down, change y position
+
+document.addEventListener("keydown", moveUp);
+
+function moveUp(e) {
+ 
+if(e.key == "Down"  || e.key == "ArrowDown") {
+	z += 50; 
+}
+else if(e.key == "Up"  || e.code == "ArrowUp") {
+	z -= 50; 
+}
+
+else if(e.key == "s"  || e.code == "KeyS") {
+	y += 50; 
+ }
+
+else if(e.key == "w"  || e.code == "KeyW") {
+	y -= 50; 
+ }
+
+}
+ 
+//when a player scores, the ball goes in the middle and play is restarted
+function restart() {
+
+if (Math.floor(Math.random()*2) == 1) {
+    xv = -xv;
+}
+
+if (Math.floor(Math.random()*2) == 1) {
+    yv = -yv;
+} 
+
+bx = canvas.width/2;
+by = canvas.height/2;
+
+}
+
+
+ //animation loop/timer 
+
+ function draw() {
+ 
+ bx += xv; 
+ by += yv;
+
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
+ ctx.fillRect(100, y, 20, 100);
+ ctx.fillRect(980, z, 20, 100);
+ ctx.fillRect(bx, by, 20, 20);   
+ ctx.font='16px Arial';
+ ctx.fillText('Player 1: '+s1, 150, 20);
+ ctx.fillText('Player 2: '+s2, 900, 20);
+
+ //Bouncing off of walls
+ if (by < 0) {
+   yv = -yv;
+ }  
+
+ if (by > 540) {
+   yv = -yv;
+ }  
+
+ //scoring
+ if (bx < 0) {
+    s2 +=1;
+    restart();
+
+ }
+ if (bx > 1080) {
+    s1 +=1;
+    restart();
+ }
+
+ //collision detection
+ if (bx <= 100 && by >= y && by <= y + paddle) {
+     xv = -xv;
+ }
+
+ if (bx >= 980 && by >= z && by <= z + paddle) {
+     xv = -xv;
+ }
+
+ //ending the game (winning conditionals)
+ if (s1 == 10) {
+   alert('Player 1 Wins!');
+   document.location.reload();
+ }
+
+ if (s2 == 10) {
+   alert('Player 2 Wins!');
+   document.location.reload();
+  }
+
+requestAnimationFrame(draw);
+
+ }
+    
+ draw();
+
+
+
+
+</script>
+</html>
